@@ -10,7 +10,6 @@ from ControlUp.utils.utils import log_message, LogLevel, take_screenshot
 
 class LoginPage(BasePage):
     def __init__(self, page: Page):
-
         super().__init__(page)
         self.username_field = self.page.locator("[id = 'user-name']")
         self.password_field = self.page.locator("[id = 'password']")

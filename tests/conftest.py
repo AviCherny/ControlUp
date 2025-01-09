@@ -2,9 +2,11 @@ import logging
 
 import pytest
 
+from ControlUp.pages.inventory_page import InventoryPage
 from ControlUp.pages.login_page import LoginPage
 from ControlUp.utils.config import BASE_URL
 from ControlUp.utils.utils import log_message, LogLevel
+from ControlUp.utils.validation import AppValidation
 
 logger = logging.getLogger(__name__)
 
@@ -28,3 +30,13 @@ def setup_login_page(setup_playwright):
     log_message(logger, "Navigation to login page completed.", LogLevel.INFO)
 
     yield login_page
+
+@pytest.fixture
+def setup_all_pages(setup_playwright):
+    login_page = LoginPage(setup_playwright)
+    inventory_page = InventoryPage(setup_playwright)
+    yield login_page, inventory_page
+
+@pytest.fixture
+def validation(setup_all_pages):
+    yield AppValidation(setup_all_pages)

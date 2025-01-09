@@ -6,5 +6,9 @@ from ControlUp.pages.base_page import BasePage
 class InventoryPage(BasePage):
     def __init__(self, page: Page):
         super().__init__(page)
-        self.username_field = self.page.locator("")
+        self.inventory_item = self.page.locator("[data-test='inventory-item']")
+
+    def get_all_items(self):
+        return self.inventory_item.count()
+
 
