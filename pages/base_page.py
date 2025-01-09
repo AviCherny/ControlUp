@@ -22,7 +22,6 @@ class BasePage:
             log_message(self.logger, f"Action failed: {action_name}. Error: {str(e)}", LogLevel.ERROR)
 
             take_screenshot(self.page, action_name)
-
             raise
 
     def navigate_to(self, url: str):
@@ -34,14 +33,4 @@ class BasePage:
     def type_text(self, locator: Locator, text: str):
         self.safe_execute(locator.fill, "type_text", text)
 
-
-    def is_element_visible(self, locator: Locator) -> bool:
-        try:
-            log_message(self.logger, f"Checking visibility of element: {locator}", level=LogLevel.INFO,attach_to_allure=False)
-            return locator.is_visible()
-        except Exception as e:
-            log_message(self.logger, f"Failed to check visibility of element: {locator}. Error: {str(e)}",
-                        level=LogLevel.ERROR)
-            take_screenshot(self.page, "is_element_visible")
-            return False
 
