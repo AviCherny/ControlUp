@@ -11,11 +11,9 @@ class LogLevel(Enum):
 
 def take_screenshot(page, name: str = "screenshot"):
     """
-    Captures a screenshot using the provided driver and attaches it to Allure.
-    Does not save the screenshot locally unless required.
+    Captures a screenshot using the provided driver and attaches it to Allure(save space).
     """
     try:
-        # Capture the screenshot as binary data
         screenshot_data = page.screenshot(type="png")
 
         # Attach the screenshot to Allure
@@ -33,7 +31,7 @@ def take_screenshot(page, name: str = "screenshot"):
 
 def log_message(logger, message: str, level: LogLevel = LogLevel.INFO, attach_to_allure: bool = True):
     """
-    Logs a message and level
+    Logs a message and level, attached to allure by demand
     """
     if level == LogLevel.INFO:
         logger.info(message)

@@ -1,4 +1,3 @@
-import requests
 import pytest
 
 from ControlUp.utils.config import END_POINT_AIRPORTS, END_POINT_AIRPORT_DISTANCE

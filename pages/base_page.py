@@ -24,13 +24,12 @@ class BasePage:
             action(*args)  # Call the action with unpacked arguments
         except Exception as e:
             log_message(self.logger, f"Action failed: {action_name}. Error: {str(e)}", LogLevel.ERROR)
-
             take_screenshot(self.page, action_name)
             raise
 
     def safe_api_call(self, method: HttpMethod, url: str, validate_status=True, expected_status=HttpStatusCode.OK, **kwargs):
         """
-        Wrapper to safely execute api request
+        Wrapper to safely execute api request with logging and attach to allure
         """
         try:
             log_message(self.logger, f"API Call: {method} -> {url}", LogLevel.INFO)
@@ -55,10 +54,9 @@ class BasePage:
     def type_text(self, locator: Locator, text: str):
         self.safe_execute(locator.fill, "type_text", text)
 
-
     def assert_with_context(self, actual, expected, message, screenshot_name="assertion_failure"):
         """
-        safe assert
+        safe assert if fail log and screenshot will be attached to allure
         """
         try:
             assert actual == expected, message

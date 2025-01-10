@@ -1,7 +1,6 @@
 from ControlUp.utils.http_enums import HttpStatusCode, HttpMethod
 
 
-
 def validate_status_code(response, expected_status: HttpStatusCode, message):
         assert response.status_code == expected_status.value, (
             f"Expected status code {expected_status.value}, "

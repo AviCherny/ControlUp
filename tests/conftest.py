@@ -29,7 +29,6 @@ def base_page():
     log_message(logger, "BasePage instance created.", LogLevel.INFO)
     yield base_page_instance
 
-
 @pytest.fixture
 def setup_login_page(setup_playwright):
 
@@ -44,7 +43,6 @@ def setup_logged_in_page(setup_playwright):
     login_page = LoginPage(setup_playwright)
     login_page.navigate_to(BASE_URL)
     return login_page.login(VALID_CREDENTIALS["email"], VALID_CREDENTIALS["password"])
-
 
 @pytest.fixture
 def setup_all_pages(setup_playwright):
