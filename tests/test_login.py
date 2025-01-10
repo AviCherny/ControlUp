@@ -6,7 +6,7 @@ from ControlUp.utils.config import VALID_CREDENTIALS
 
 @pytest.mark.parametrize(
     "items",
-    [6]
+    [7]
 )
 @pytest.mark.login
 def test_successful_login_and_verify_items_displayed(setup_login_page, validation, items):

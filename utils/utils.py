@@ -25,14 +25,10 @@ def take_screenshot(page, name: str = "screenshot"):
             attachment_type=allure.attachment_type.PNG
         )
 
-        print(f"Screenshot captured and attached to Allure: {name}")
         return screenshot_data
     except Exception as e:
-        print(f"Failed to capture and attach screenshot. Error: {str(e)}")
         return None
 
-
-import allure
 
 
 def log_message(logger, message: str, level: LogLevel = LogLevel.INFO, attach_to_allure: bool = True):

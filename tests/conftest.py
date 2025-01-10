@@ -7,6 +7,7 @@ from ControlUp.pages.login_page import LoginPage
 from ControlUp.utils.config import BASE_URL, VALID_CREDENTIALS
 from ControlUp.utils.utils import log_message, LogLevel
 from ControlUp.utils.validation_ui import AppValidation
+from pages.base_page import BasePage
 
 logger = logging.getLogger(__name__)
 
@@ -21,6 +22,13 @@ def setup_playwright(playwright, request):
     finally:
         log_message(logger, "Closing browser.", LogLevel.INFO)
         browser.close()
+
+@pytest.fixture
+def base_page():
+    base_page_instance = BasePage()
+    log_message(logger, "BasePage instance created.", LogLevel.INFO)
+    yield base_page_instance
+
 
 @pytest.fixture
 def setup_login_page(setup_playwright):
